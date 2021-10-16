@@ -5,7 +5,7 @@ export const signupUser = createAsyncThunk(
   async ({ name, email, password }, thunkAPI) => {
     try {
       const response = await fetch(
-        'http://localhost:8080/api/v1/users',
+        'http://localhost:8081/api/v1/users',
         {
           method: 'POST',
           headers: {
@@ -40,7 +40,7 @@ export const loginUser = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await fetch(
-        'http://localhost:8080/api/v1/auth',
+        'http://localhost:8081/api/v1/auth',
         {
           method: 'POST',
           headers: {
@@ -73,7 +73,7 @@ export const fetchUserBytoken = createAsyncThunk(
   async ({ token }, thunkAPI) => {
     try {
       const response = await fetch(
-        'http://localhost:8080/api/v1/users',
+        'http://localhost:8081/api/v1/users',
         {
           method: 'GET',
           headers: {
