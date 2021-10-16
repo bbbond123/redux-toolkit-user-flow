@@ -61,6 +61,7 @@ const Login = ({}) => {
                   <input
                     id="email"
                     name="email"
+                    value="yibuw@osakakuma.com"
                     type="email"
                     autoComplete="email"
                     ref={register({
@@ -84,6 +85,7 @@ const Login = ({}) => {
                     id="password"
                     name="password"
                     type="password"
+                    value="Asd123"
                     ref={register({ required: true })}
                     autoComplete="current-password"
                     required
@@ -110,7 +112,7 @@ const Login = ({}) => {
                         cy="12"
                         r="10"
                         stroke="currentColor"
-                        stroke-width="4"
+                        strokeWidth="4"
                       ></circle>
                       <path
                         class="opacity-75"

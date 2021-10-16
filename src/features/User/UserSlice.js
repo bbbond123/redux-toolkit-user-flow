@@ -5,7 +5,7 @@ export const signupUser = createAsyncThunk(
   async ({ name, email, password }, thunkAPI) => {
     try {
       const response = await fetch(
-        'https://mock-user-auth-server.herokuapp.com/api/v1/users',
+        'http://localhost:8080/api/v1/users',
         {
           method: 'POST',
           headers: {
@@ -40,7 +40,7 @@ export const loginUser = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await fetch(
-        'https://mock-user-auth-server.herokuapp.com/api/v1/auth',
+        'http://localhost:8080/api/v1/auth',
         {
           method: 'POST',
           headers: {
@@ -73,7 +73,7 @@ export const fetchUserBytoken = createAsyncThunk(
   async ({ token }, thunkAPI) => {
     try {
       const response = await fetch(
-        'https://mock-user-auth-server.herokuapp.com/api/v1/users',
+        'http://localhost:8080/api/v1/users',
         {
           method: 'GET',
           headers: {
@@ -140,17 +140,14 @@ export const userSlice = createSlice({
       state.isSuccess = true;
       return state;
     },
+    [loginUser.pending]: (state) => {
+      state.isFetching = true;
+    },
     [loginUser.rejected]: (state, { payload }) => {
       console.log('payload', payload);
       state.isFetching = false;
       state.isError = true;
       state.errorMessage = payload.message;
-    },
-    [loginUser.pending]: (state) => {
-      state.isFetching = true;
-    },
-    [fetchUserBytoken.pending]: (state) => {
-      state.isFetching = true;
     },
     [fetchUserBytoken.fulfilled]: (state, { payload }) => {
       state.isFetching = false;
@@ -158,6 +155,9 @@ export const userSlice = createSlice({
 
       state.email = payload.email;
       state.username = payload.name;
+    },
+    [fetchUserBytoken.pending]: (state) => {
+      state.isFetching = true;
     },
     [fetchUserBytoken.rejected]: (state) => {
       console.log('fetchUserBytoken');
